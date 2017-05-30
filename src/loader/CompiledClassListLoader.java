@@ -24,7 +24,7 @@ public class CompiledClassListLoader {
      * @return the list of compiled classes.
      * @throws ClassNotFoundException
      */
-    public List<Class<?>> load(CompiledClassList compiledClassList) throws ClassNotFoundException {
+    public List<Class<?>> loadAsList(CompiledClassList compiledClassList) throws ClassNotFoundException {
         BytecodeLoader bytecodeLoader = BytecodeLoader.getInstance();
         List<Class<?>> loadedClasses = new ArrayList<>();
 
@@ -44,7 +44,7 @@ public class CompiledClassListLoader {
      * @throws ClassNotFoundException
      */
     public Map<String, Class<?>> loadAsMap(CompiledClassList compiledClassList) throws ClassNotFoundException {
-        List<Class<?>> classes = load(compiledClassList);
+        List<Class<?>> classes = loadAsList(compiledClassList);
 
         return uniqueIndex(classes, BY_CLASS_NAME);
     }
