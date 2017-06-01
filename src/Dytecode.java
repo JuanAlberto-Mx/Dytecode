@@ -61,37 +61,4 @@ public class Dytecode {
 
         return classListLoader.loadAsList(compiledCassList);
     }
-
-    /**
-     * Gets a set of <code>Java</code> files contained in a specific directory.
-     * @param directory the directory which contains <code>Java</code> files.
-     * @return a list of <code>Java</code> files.
-     * @throws IOException
-     */
-    public List<File> getJavaFiles(String directory) throws IOException {
-        return getJavaFiles(directory, new ArrayList<>());
-    }
-
-    /**
-     * Gets a set of <code>Java</code> files contained in a specific directory.
-     * @param directory the directory which contains <code>Java</code> files.
-     * @param listFiles the empty <code>List</code> which will contain the resulting
-     *                 <code>Java</code> files.
-     * @return a list of <code>Java</code> files.
-     * @throws IOException
-     */
-    private List<File> getJavaFiles(String directory, List<File> listFiles) throws IOException {
-        Files.newDirectoryStream(Paths.get(directory)).forEach(file -> {
-            try {
-                if(file.toFile().isDirectory())
-                    getJavaFiles(file.toString(), listFiles);
-                else if (file.toFile().getName().endsWith(".java"))
-                    listFiles.add(file.toFile());
-            }
-            catch (IOException e){
-            }
-        });
-
-        return listFiles;
-    }
 }
